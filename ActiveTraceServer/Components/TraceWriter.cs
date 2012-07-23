@@ -33,7 +33,7 @@ namespace ActiveTraceServer.Service
 
             _traces.Enqueue(trace);
 
-            var context = GlobalHost.ConnectionManager.GetConnectionContext<TraceEndpoint>();
+            var context = GlobalHost.ConnectionManager.GetConnectionContext<TracePersistentConnection>();
             context.Connection.Broadcast(
                 new
                 {

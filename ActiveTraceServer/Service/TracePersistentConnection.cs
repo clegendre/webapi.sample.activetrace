@@ -3,7 +3,7 @@ using SignalR;
 
 namespace ActiveTraceServer.Service
 {
-    public class TraceEndpoint : PersistentConnection
+    public class TracePersistentConnection : PersistentConnection
     {
         protected override Task OnConnectedAsync(IRequest request, string connectionId)
         {

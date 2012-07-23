@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 
 namespace ActiveTraceServer.Service
@@ -10,7 +9,7 @@ namespace ActiveTraceServer.Service
         public IEnumerable<int> Get()
         {
             throw new Exception("exception");
-            return Enumerable.Range(0, 10);
+            //return Enumerable.Range(0, 10);
         }
     }
 }
