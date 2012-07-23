@@ -1,0 +1,42 @@
+﻿body
+{
+    background-color: #333333;
+    font-family: Calibri;
+    color: white;
+}
+
+.button
+{
+    border-collapse: collapse;
+    border: 1px solid #BBBBBB;
+    font-weight: bold;
+    margin: 2px;
+}
+
+table
+{
+    border-collapse: collapse;
+    margin: 2px;
+    background-color: white;
+    color: black;
+    font-size: small;
+    min-width: 480px;
+    text-align: left;
+}
+
+td, th
+{
+    text-align: left;
+    padding: 0px 4px;
+}
+
+th
+{
+    background-color: black;
+    color: white;
+}
+
+div.output
+{
+    height: 40px;
+}

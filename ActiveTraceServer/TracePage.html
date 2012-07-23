@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="Style/Default.css" />
+    <title>Trace Page</title>
+</head>
+<body>
+    <h1>Trace Records</h1>
+
+    <input type="button" id="btnClear" class="button" value="Clear" />
+
+    <div id="message" class="output"></div>
+    <div id="exception" class="output"></div>
+
+    <table id="tracetable">
+        <tr id="header">
+            <th id="requrl">URL</th>
+            <th id="level">Level</th>
+            <th id="category">Category</th>
+            <th id="operator">Operator</th>
+            <th id="operation">Operation</th>
+            <th id="status">Status</th>
+        </tr>
+    </table>
+
+    <script type="text/javascript" src="Scripts/jquery-1.6.4.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui-1.8.20.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.signalR-0.5.2.js"></script>
+    <script type="text/javascript" src="Scripts/TracePage.js"></script>
+    <script type="text/javascript" src="/signalr/hubs"></script>
+</body>
+</html>
