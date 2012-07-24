@@ -5,28 +5,48 @@
     <title>WebAPI Tracing + SignalR</title>
 </head>
 <body>
-    <h1>WebAPI Tracing + SignalR</h1>
-    <table>
-        <tr>
-            <td>Username</td>
-            <td>
-                <input type="text" id="txtUsername" /></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td>
-                <input type="password" id="txtPassword" /></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="button" id="btnLogin" value="Log in" />
-                <input type="button" id="btnLogout" value="Log out" />
-            </td>
-        </tr>
-    </table>
+    <div id="auth">
+        <h1>WebAPI Tracing + SignalR</h1>
+        <table id="logTable">
+            <tr>
+                <td>Username</td>
+                <td>
+                    <input type="text" id="txtUsername" /></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password" id="txtPassword" /></td>
+            </tr>
+        </table>
+        <input type="button" id="btnLogin" value="Log in" />
+        <input type="button" id="btnLogout" value="Log out" />
+    </div>
+
+    <div id="trace">
+        <h1>Trace Records</h1>
+
+        <input type="button" id="btnClear" class="button" value="Clear" />
+
+        <div id="message" class="output"></div>
+        <div id="exception" class="output"></div>
+
+        <table id="tracetable">
+            <tr id="header">
+                <th id="requrl">URL</th>
+                <th id="level">Level</th>
+                <th id="category">Category</th>
+                <th id="operator">Operator</th>
+                <th id="operation">Operation</th>
+                <th id="status">Status</th>
+            </tr>
+        </table>
+    </div>
+
     <script type="text/javascript" src="Scripts/jquery-1.6.4.js"></script>
     <script type="text/javascript" src="Scripts/jquery-ui-1.8.20.js"></script>
     <script type="text/javascript" src="Scripts/jquery.base64.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.signalR-0.5.2.js"></script>
     <script type="text/javascript" src="Scripts/Home.js"></script>
 </body>
 </html>

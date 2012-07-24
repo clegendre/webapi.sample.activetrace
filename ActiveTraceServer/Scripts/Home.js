@@ -3,7 +3,48 @@
 /// <reference path="jquery.base64.js" />
 
 $(function () {
-    $('#btnLogout').attr("disabled", "true");
+    function updateTraceTable(trace) {
+        var row = $('<tr></tr>');
+        row.append('<td>' + trace.RequestUri + '</td>');
+        row.append('<td>' + trace.Level + '</td>');
+        row.append('<td>' + trace.Category + '</td>');
+        row.append('<td>' + trace.Operator + '</td>');
+        row.append('<td>' + trace.Operation + '</td>');
+        $('<td>' + trace.Status + '</td>').appendTo(row);
+
+        row.insertAfter('#header');
+
+        row.hover(
+            function () {
+                $('#message').text(trace.Message);
+                $('#exception').text(trace.Exception);
+                $(this).css("background-color", "lightgreen");
+            },
+            function () {
+                $('#message').text("");
+                $('#exception').text("");
+                $(this).css("background-color", "white");
+            });
+    };
+
+    function setupTraceConnection() {
+        var connection = $.connection('/trace');
+
+        connection.received(function (trace) {
+            $('#debuginfo').text(trace);
+            updateTraceTable(trace);
+        });
+
+        connection.start();
+
+        $('#btnClear').click(function () {
+            $('#debuginfo').text("clear the trace records");
+            $('td', '#tracetable').remove();
+        });
+    };
+
+    $('#btnLogout').hide();
+    $('div#trace').hide();
 
     $('#btnLogin').click(function (event) {
         var options = {
@@ -16,7 +57,11 @@ $(function () {
             },
             timeout: '3000',
             success: function (data) {
-                alert(data);
+                $('div#trace').show();
+                $('#logTable').hide();
+                $('#btnLogin').hide();
+                $('#btnLogout').show();
+                setupTraceConnection();
             },
             error: function (data, status, err) {
                 alert(err);
@@ -24,4 +69,5 @@ $(function () {
         }
         $.ajax(options);
     });
+
 });
