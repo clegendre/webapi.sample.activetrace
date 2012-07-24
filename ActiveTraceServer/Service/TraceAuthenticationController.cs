@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Web;
 using System.Web.Http;
-using System.Web.Http.Hosting;
 using ActiveTraceServer.Components;
 
 namespace ActiveTraceServer.Service
 {
+    /// <summary>
+    /// authenticate controller gives out token for authorized clients
+    /// </summary>
     public class TraceAuthenticationController : ApiController
     {
         [Authorize(Roles = "admin")]
@@ -16,12 +17,6 @@ namespace ActiveTraceServer.Service
             ClientTokens.Instance.AddToken(key);
 
             return key;
-        }
-
-        [AcceptVerbs("GET")]
-        public string Version()
-        {
-            return "0.1";
         }
     }
 }

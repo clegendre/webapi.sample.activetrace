@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Linq;
-using System.Web;
 
 namespace ActiveTraceServer.Components
 {
+    /// <summary>
+    /// stoarge of the client tokens, used to authenticate clients
+    /// 
+    /// improvement: expire token after a period of time
+    /// </summary>
     public class ClientTokens
     {
         private static ClientTokens s_instnace = new ClientTokens();

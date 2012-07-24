@@ -25,10 +25,11 @@ namespace ActiveTraceServer.Service
                 var username = splited[0];
                 var password = splited[1];
 
-                if (username == "admin" && password == "password")
+                if ((username == "admin" && password == "password") ||
+                    (username == "poweruser" && password == "power"))
                 {
                     Thread.CurrentPrincipal = new GenericPrincipal(
-                        new GenericIdentity("Admin"), new string[] { "admin" });
+                        new GenericIdentity(username), new string[] { "admin" });
                 }
             }
 

@@ -6,6 +6,9 @@ using SignalR;
 
 namespace ActiveTraceServer.Service
 {
+    /// <summary>
+    /// writes the traces to the persistent connection
+    /// </summary>
     public class TraceWriter : ITraceWriter
     {
         private ConcurrentQueue<TraceRecord> _traces;
