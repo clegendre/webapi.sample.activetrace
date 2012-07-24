@@ -15,7 +15,7 @@ namespace ActiveTraceServer.Service
         {
             var auth = request.Headers.Authorization;
 
-            if (auth == null || auth.Scheme != "Basic")
+            if (auth == null || auth.Scheme != "Base")
             {
                 var tcs = new TaskCompletionSource<HttpResponseMessage>();
                 var resp = request.CreateResponse(HttpStatusCode.Unauthorized);
@@ -26,7 +26,11 @@ namespace ActiveTraceServer.Service
             }
             else
             {
-                var encoder = Encoding.GetEncoding("iso-8859-1");
+                var encoder = Encoding.ASCII;
+
+                string v = "admin:password";
+                string ec = Convert.ToBase64String(encoder.GetBytes(v));
+                
                 var raw = encoder.GetString(Convert.FromBase64String(auth.Parameter));
                 var splited = raw.Split(new char[] { ':' });
                 var username = splited[0];

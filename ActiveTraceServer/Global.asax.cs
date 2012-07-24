@@ -9,10 +9,11 @@ namespace ActiveTraceServer
 {
     public class Global : System.Web.HttpApplication
     {
-
         protected void Application_Start(object sender, EventArgs e)
         {
             var config = GlobalConfiguration.Configuration;
+
+            config.MessageHandlers.Add(new AuthenticationHandler());
 
             config.Services.Replace(typeof(ITraceWriter), TraceWriter.Instance);
 
