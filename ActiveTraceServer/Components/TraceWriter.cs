@@ -34,7 +34,8 @@ namespace ActiveTraceServer.Service
             _traces.Enqueue(trace);
 
             var context = GlobalHost.ConnectionManager.GetConnectionContext<TracePersistentConnection>();
-            context.Connection.Broadcast(
+            context.Groups.Send(
+                TracePersistentConnection.Authenticated,
                 new
                 {
                     trace.RequestId,

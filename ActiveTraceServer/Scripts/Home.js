@@ -27,7 +27,7 @@ $(function () {
             });
     };
 
-    function setupTraceConnection() {
+    function setupTraceConnection(token) {
         var connection = $.connection('/trace');
 
         connection.received(function (trace) {
@@ -35,7 +35,10 @@ $(function () {
             updateTraceTable(trace);
         });
 
-        connection.start();
+        connection.start().done(
+            function () {
+                connection.send(token);
+            });
 
         $('#btnClear').click(function () {
             $('#debuginfo').text("clear the trace records");
@@ -47,21 +50,25 @@ $(function () {
     $('div#trace').hide();
 
     $('#btnLogin').click(function (event) {
+        var username = $('input#txtUsername').val();
+        var password = $('input#txtPassword').val();
+
         var options = {
-            url: 'api/TraceAuthentication/Authenticate',
-            type: 'POST',
+            url: 'api/TraceAuthentication/GetToken',
+            type: 'GET',
+            data: { 'username': username },
             beforeSend: function (xhr) {
-                var raw = "admin:password";
+                var raw = username + ":" + password;
                 var encoded = jQuery.base64.encode(raw);
                 xhr.setRequestHeader("Authorization", "Base " + encoded);
             },
-            timeout: '3000',
-            success: function (data) {
+            timeout: '60000',
+            success: function (token) {
                 $('div#trace').show();
                 $('#logTable').hide();
                 $('#btnLogin').hide();
                 $('#btnLogout').show();
-                setupTraceConnection();
+                setupTraceConnection(token);
             },
             error: function (data, status, err) {
                 alert(err);
